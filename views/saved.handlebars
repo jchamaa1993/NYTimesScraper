@@ -1,0 +1,35 @@
+<div class = "container">
+	<div class = "row">
+		<div class = "col-md-12">
+			<div class = "page-header">
+				<h1>NY Times Scraper</h1>
+				<button id= "home">Home</button>
+				<button id = "saved">Saved Articles</button>
+			</div>
+		</div>
+	</div>
+	<div class = "row">
+		<div class = "col-md-12">
+			{{#unless saved}}
+				<h2>No saved articles :(</h2>
+			{{/unless}}
+			{{#if saved}}
+				<ul>
+					{{#each saved}}
+						<li>
+							{{this.title}}
+							<br />
+							{{this.link}}
+							<form id="remove" action="/remove/{{this.id}}?_method=PUT" method = "POST">
+								<button type = "submit" class = "btn btn-primary">Delete Article</button>
+							</form>
+							<form id="Note" action="/articles/{{this.id}}?_method=PUT" method = "POST">
+								<button type = "submit" class = "btn btn-primary">Add Note</button>
+							</form>
+						</li>
+					{{/each}}
+				</ul>
+			{{/if}}
+		</div>
+	</div>
+</div>

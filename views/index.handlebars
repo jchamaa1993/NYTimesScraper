@@ -3,8 +3,12 @@
 		<div class = "col-md-12">
 			<div class = "page-header">
 					<h1>NY Times Scraper</h1>
-					<button id= "home">Home</button>
-					<button id = "saved">Saved Articles</button>
+					<form id= "home" action = "/" method="GET">
+						<button type = "submit">Home</button>
+					</form>
+					<form id="saved" action = "/saved" method="GET">
+						<button type="submit">Saved Articles</button>
+					</form>
 					<form action="/scrape" method = "GET">
 						<button type = "submit" class = "btn btn-primary">
 						SCRAPE NEW ARTICLES</button>
@@ -21,9 +25,30 @@
 								{{this.title}}
 								<br />
 								{{this.link}}
-								<form class="note" action="saved/{{this.id}}" method = "PUT">
+								<form id="save" action="/saved/{{this.id}}?_method=PUT" method = "POST">
 									<button type = "submit" class = "btn btn-primary">Save Article</button>
 								</form>
+								 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+								  <!-- Modal -->
+								  <div class="modal fade" id="myModal" role="dialog">
+								    <div class="modal-dialog">
+								    
+								      <!-- Modal content-->
+								      <div class="modal-content">
+								        <div class="modal-header">
+								          <button type="button" class="close" data-dismiss="modal">&times;</button>
+								          <h4 class="modal-title">Modal Header</h4>
+								        </div>
+								        <div class="modal-body">
+								          <p>Some text in the modal.</p>
+								        </div>
+								        <div class="modal-footer">
+								          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								        </div>
+								      </div>
+								      
+								    </div>
+								  </div>
 							</li>
 						{{/each}}
 					</ul>
